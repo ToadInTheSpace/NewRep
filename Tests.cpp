@@ -13,13 +13,13 @@ TEST(BitArray, Create) {
 	for (int i = 0; i < 10; i++)
 		EXPECT_FALSE(BA1.bits[i]) << "Test with no value";
 
-	BitArray BA2(3, 2);
-	bool b[3]{false, false, false };
+	BitArray BA2(2, 1);
+	bool b[2]{ true, false };
 	for (int i = 0; i < BA2.len; i++)
 		if (b[i])
-			EXPECT_FALSE(BA2.bits[i]) << "little test " << i;
+			EXPECT_FALSE(BA2.bits[i]) << "little test";
 		else
-			EXPECT_FALSE(BA2.bits[i]) << "little test " << i;
+			EXPECT_FALSE(BA2.bits[i]) << "little test";
 
 
 	bool a[15]{ true, true, true, true, true, true, false, false, true, true, true, false, false, false, false };
@@ -64,21 +64,21 @@ TEST(BitArray, SetOne) {
 	BA1.set(15);
 	for (int i = 0; i < BA1.len; i++)
 		if (a[i])
-			EXPECT_FALSE(BA1.bits[i]) << "set true test";
+			EXPECT_TRUE(BA1.bits[i]) << "set true test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "set true test";
 
 	BA1.set(16, true);
 	for (int i = 0; i < BA1.len; i++)
 		if (a[i])
-			EXPECT_FALSE(BA1.bits[i]) << "more than len set test";
+			EXPECT_TRUE(BA1.bits[i]) << "more than len set test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "more than len set test";
 
 	BA1.set(-1, true);
 	for (int i = 0; i < BA1.len; i++)
 		if (a[i])
-			EXPECT_FALSE(BA1.bits[i]) << "negative adress set test";
+			EXPECT_TRUE(BA1.bits[i]) << "negative adress set test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "negative adress set test";
 
@@ -86,7 +86,7 @@ TEST(BitArray, SetOne) {
 	BA1.set(1, false);
 	for (int i = 0; i < BA1.len; i++)
 		if (a[i])
-			EXPECT_FALSE(BA1.bits[i]) << "set negative test";
+			EXPECT_TRUE(BA1.bits[i]) << "set negative test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "set negative test";
 
@@ -96,7 +96,7 @@ TEST(BitArray, SetAll) {
 	BitArray BA1(15, 2023);
 	BA1.set();
 	for (int i = 0; i < BA1.len; i++)
-		EXPECT_FALSE(BA1[i]) << "SetAll test";
+		EXPECT_TRUE(BA1[i]) << "SetAll test";
 
 	BitArray BA2;
 	BA2.set();
@@ -108,23 +108,23 @@ TEST(BitArray, ResetOne) {
 	BitArray BA1(15, 2023);
 	bool a[15]{ false, true, true, true, true, true, false, false, true, true, true, false, false, false, false };
 	BA1.reset(1);
-		for (int i = 0; i < BA1.len; i++)
+	for (int i = 0; i < BA1.len; i++)
 		if (a[i])
-			EXPECT_FALSE(BA1.bits[i]) << "reset true test";
+			EXPECT_TRUE(BA1.bits[i]) << "reset true test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "reset true test";
 
 	BA1.reset(16);
 	for (int i = 0; i < BA1.len; i++)
 		if (a[i])
-			EXPECT_FALSE(BA1.bits[i]) << "more than len reset test";
+			EXPECT_TRUE(BA1.bits[i]) << "more than len reset test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "more than len reset test";
 
 	BA1.reset(-1);
 	for (int i = 0; i < BA1.len; i++)
 		if (a[i])
-			EXPECT_FALSE(BA1.bits[i]) << "negative adress reset test";
+			EXPECT_TRUE(BA1.bits[i]) << "negative adress reset test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "negative adress reset test";
 }
@@ -143,7 +143,7 @@ TEST(BitArray, ResetAll) {
 
 TEST(BitArray, any) {
 	BitArray BA1(15, 2023);
-	EXPECT_FALSE(BA1.any()) << "true any test";
+	EXPECT_TRUE(BA1.any()) << "true any test";
 
 	BitArray BA2(15);
 	EXPECT_FALSE(BA2.any()) << "false any test";
@@ -158,15 +158,15 @@ TEST(BitArray, none) {
 	EXPECT_FALSE(BA1.none()) << "false none test";
 
 	BitArray BA2(15);
-	EXPECT_FALSE(BA2.none()) << "true none test";
+	EXPECT_TRUE(BA2.none()) << "true none test";
 
 	BitArray BA3;
-	EXPECT_FALSE(BA3.none()) << "empty none test";
+	EXPECT_TRUE(BA3.none()) << "empty none test";
 }
 
 TEST(BitArray, empty) {
 	BitArray BA1;
-	EXPECT_FALSE(BA1.empty()) << "true empty test";
+	EXPECT_TRUE(BA1.empty()) << "true empty test";
 
 	BitArray BA2(15, 2023);
 	EXPECT_FALSE(BA2.empty()) << "false empty test";
@@ -201,7 +201,7 @@ TEST(BitArray, resize) {
 	EXPECT_EQ(BA1.len, BA2.len) << "increase resize len test";
 	for (int i = 0; i < BA2.len; i++)
 		if (BA2.bits[i])
-			EXPECT_FALSE(BA1.bits[i]) << "increase resize bit test";
+			EXPECT_TRUE(BA1.bits[i]) << "increase resize bit test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "increase resize bit test";
 
@@ -209,7 +209,7 @@ TEST(BitArray, resize) {
 	EXPECT_EQ(BA1.len, BA3.len) << "decrease resize len test";
 	for (int i = 0; i < BA3.len; i++)
 		if (BA3.bits[i])
-			EXPECT_FALSE(BA1.bits[i]) << "decrease resize bit test";
+			EXPECT_TRUE(BA1.bits[i]) << "decrease resize bit test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "decrease resize bit test";
 
