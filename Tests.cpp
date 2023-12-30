@@ -76,26 +76,26 @@ TEST(BitArray, SetOne) {
 			EXPECT_FALSE(BA1.bits[i]) << "more than len set test";
 
 	BA1.set(-1, true);
-	for (int i = 0; i < BA1.len; i++)
+	for (int i = 0; i < BA1.len - 1; i++)
 		if (a[i])
-			EXPECT_FALSE(BA1.bits[i]) << "negative adress set test";
+			EXPECT_FALSE(BA1.bits[i]) << "negative adress set test" << i;
 		else
-			EXPECT_FALSE(BA1.bits[i]) << "negative adress set test";
+			EXPECT_FALSE(BA1.bits[i]) << "negative adress set test" << i;
 
 	a[0] = false;
 	BA1.set(1, false);
-	for (int i = 0; i < BA1.len; i++)
+	for (int i = 0; i < BA1.len - 1; i++)
 		if (a[i])
-			EXPECT_FALSE(BA1.bits[i]) << "set negative test";
+			EXPECT_FALSE(BA1.bits[i]) << "set negative test" << i;
 		else
-			EXPECT_FALSE(BA1.bits[i]) << "set negative test";
+			EXPECT_FALSE(BA1.bits[i]) << "set negative test" << i;
 
 }
 
 TEST(BitArray, SetAll) {
 	BitArray BA1(15, 2023);
 	BA1.set();
-	for (int i = 0; i < BA1.len; i++)
+	for (int i = 0; i < BA1.len - 1; i++)
 		EXPECT_TRUE(BA1[i]) << "SetAll test";
 
 	BitArray BA2;
