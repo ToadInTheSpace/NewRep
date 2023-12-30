@@ -1,29 +1,31 @@
-name: Build and Test C++ Program on Windows
+# .github/workflows/build.yml
+
+name: Build and Test
 
 on:
   push:
     branches:
-      - main  # замените на вашу основную ветку
+      - main
 
 jobs:
-  build_and_test:
-    runs-on: windows-latest
+  build:
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up MSVC environment
-      uses: microsoft/setup-msvc@v2
+    - name: Set up CMake
+      uses: actions/setup-cmake@v2
       with:
-        msvc-version: '2019'  # или укажите нужную версию MSVC
+        cmake-version: '3.10'
 
-    - name: Build C++ program
+    - name: Configure and build
       run: |
-        mkdir build
-        cd build
-        cmake ..
-        msbuild /p:Configuration=Release
+        cmake -B build
+        cmake --build build
 
     - name: Run tests
-      run: .\Release\YourExecutable.exe
+      run: |
+        cd build
+        ctest
