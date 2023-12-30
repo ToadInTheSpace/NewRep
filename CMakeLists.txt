@@ -2,17 +2,15 @@ cmake_minimum_required(VERSION 3.10)
 
 project(BitArrayLibrary)
 
-# Добавьте ваши исходные файлы
 set(SOURCES
+    lab1.cpp
+    Body.h
     BitArray.cpp
     Body.cpp
-    Body.h
     Tests.cpp
-    lab1.cpp
 )
 
-# Добавьте библиотеку
-add_library(BitArray SHARED ${SOURCES})  # Исправлено: SOURCEs -> SOURCES
+add_library(BitArray SHARED ${SOURCES})
 
 # Добавьте библиотеку Google Test
 add_subdirectory(googletest)
