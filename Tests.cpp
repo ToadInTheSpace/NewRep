@@ -96,7 +96,7 @@ TEST(BitArray, SetAll) {
 	BitArray BA1(15, 2023);
 	BA1.set();
 	for (int i = 0; i < BA1.len - 1; i++)
-		EXPECT_TRUE(BA1[i]) << "SetAll test";
+		EXPECT_TRUE(BA1[i]) << "SetAll test" << i;
 
 	BitArray BA2;
 	BA2.set();
