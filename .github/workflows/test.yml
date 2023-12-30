@@ -13,8 +13,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Установить CMake
-      run: sudo apt-get -y install cmake
+    - name: install CMake
+      run: sudo apt-get -y install cmake = 3.28
       
     - name: Build project
       run: |
