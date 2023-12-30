@@ -14,7 +14,7 @@ TEST(BitArray, Create) {
 		EXPECT_FALSE(BA1.bits[i]) << "Test with no value";
 
 	BitArray BA2(3, 2);
-	bool b[2]{false true, false };
+	bool b[2]{false, true, false };
 	for (int i = 0; i < BA2.len; i++)
 		if (b[i])
 			EXPECT_TRUE(BA2.bits[i]) << "little test " << i;
