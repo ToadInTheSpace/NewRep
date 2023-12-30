@@ -1,31 +1,29 @@
-# .github/workflows/build.yml
-
-name: Build and Test
+name: Build and Run with CMake
 
 on:
   push:
     branches:
-      - main
+      - main  # Замените на вашу ветку по умолчанию
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build_and_run:
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Set up CMake
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y cmake
+      uses: actions/setup-cmake@v2
+      with:
+        cmake-version: '3.20'  # Укажите необходимую версию CMake
 
-    - name: Configure and build
+    - name: Build project
       run: |
-        cmake -B build
-        cmake --build build
-
-    - name: Run tests
-      run: |
+        mkdir build
         cd build
-        ctest
+        cmake ..
+        cmake --build .
+
+    - name: Run program
+      run: ./build/TESTS
