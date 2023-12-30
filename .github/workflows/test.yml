@@ -13,8 +13,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up CMake
-      uses: actions/setup-cmake@v1  # Use the appropriate version tag
+    - name: Установить CMake
+      run: sudo apt-get -y install cmake
       
     - name: Build project
       run: |
