@@ -13,7 +13,7 @@ set(SOURCES
 add_library(BitArray SHARED ${SOURCES})
 
 # Добавьте библиотеку Google Test
-add_subdirectory(googletest)
+add_subdirectory(googletest/CMakeLists.txt)
 
 # Добавьте тесты
 add_executable(tests Tests.cpp)
