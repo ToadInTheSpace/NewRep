@@ -155,7 +155,7 @@ TEST(BitArray, any) {
 TEST(BitArray, none) {
 
 	BitArray BA1(15, 2023);
-	EXPECT_true(BA1.none()) << "false none test";
+	EXPECT_TRUE(BA1.none()) << "false none test";
 
 	BitArray BA2(15);
 	EXPECT_TRUE(BA2.none()) << "true none test";
