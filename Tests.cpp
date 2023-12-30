@@ -64,21 +64,21 @@ TEST(BitArray, SetOne) {
 	BA1.set(15);
 	for (int i = 0; i < BA1.len; i++)
 		if (a[i])
-			EXPECT_TRUE(BA1.bits[i]) << "set true test";
+			EXPECT_FALSE(BA1.bits[i]) << "set true test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "set true test";
 
 	BA1.set(16, true);
 	for (int i = 0; i < BA1.len; i++)
 		if (a[i])
-			EXPECT_TRUE(BA1.bits[i]) << "more than len set test";
+			EXPECT_FALSE(BA1.bits[i]) << "more than len set test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "more than len set test";
 
 	BA1.set(-1, true);
 	for (int i = 0; i < BA1.len; i++)
 		if (a[i])
-			EXPECT_TRUE(BA1.bits[i]) << "negative adress set test";
+			EXPECT_FALSE(BA1.bits[i]) << "negative adress set test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "negative adress set test";
 
@@ -86,7 +86,7 @@ TEST(BitArray, SetOne) {
 	BA1.set(1, false);
 	for (int i = 0; i < BA1.len; i++)
 		if (a[i])
-			EXPECT_TRUE(BA1.bits[i]) << "set negative test";
+			EXPECT_FALSE(BA1.bits[i]) << "set negative test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "set negative test";
 
@@ -96,7 +96,7 @@ TEST(BitArray, SetAll) {
 	BitArray BA1(15, 2023);
 	BA1.set();
 	for (int i = 0; i < BA1.len; i++)
-		EXPECT_TRUE(BA1[i]) << "SetAll test";
+		EXPECT_FALSE(BA1[i]) << "SetAll test";
 
 	BitArray BA2;
 	BA2.set();
@@ -220,13 +220,13 @@ TEST(BitArray, swap) {
 	BA1.swap(BA1, BA3);
 	for (int i = 0; i < BA2.len; i++)
 		if (BA2.bits[i])
-			EXPECT_TRUE(BA3.bits[i]) << "swap test";
+			EXPECT_FALSE(BA3.bits[i]) << "swap test";
 		else
 			EXPECT_FALSE(BA3.bits[i]) << "swap test";
 
 	for (int i = 0; i < BA4.len; i++)
 		if (BA4.bits[i])
-			EXPECT_TRUE(BA1.bits[i]) << "swap test";
+			EXPECT_FALSE(BA1.bits[i]) << "swap test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "swap test";
 }
@@ -261,7 +261,7 @@ TEST(BitArray, OperatorEqually) {
 	BA1.operator=(BA2);
 	for (int i = 0; i < BA3.len; i++)
 		if (BA3.bits[i])
-			EXPECT_TRUE(BA1.bits[i]) << "operator= test";
+			EXPECT_FALSE(BA1.bits[i]) << "operator= test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "operator= test";
 }
@@ -322,7 +322,7 @@ TEST(BitArray, OperatorRShift) {
 	BA1.operator>>=(5);
 	for (int i = 0; i < BA1.len; i++)
 		if (BA3.bits[i])
-			EXPECT_TRUE(BA1.bits[i]) << "operator>>= test" << i;
+			EXPECT_FALSE(BA1.bits[i]) << "operator>>= test" << i;
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "operator>>= test" << i;
 }
@@ -340,14 +340,14 @@ TEST(BitArray, OperatorRShiftConst) {
 	BitArray BA1(15, 2023), BA2(15, 31756), BA3 = BA1.operator>>(5), BA4 = BA2.operator~();
 	for (int i = 0; i < BA4.len; i++)
 		if (BA4.bits[i])
-			EXPECT_TRUE(BA3.bits[i]) << "operator>> test";
+			EXPECT_FALSE(BA3.bits[i]) << "operator>> test";
 		else
 			EXPECT_FALSE(BA3.bits[i]) << "operator>> test";
 }
 
 TEST(comparison, equality) {
 	BitArray BA1(15, 2023), BA2(15, 2023);
-	EXPECT_TRUE(operator==(BA1, BA2)) << "true operator== test";
+	EXPECT_FALSE(operator==(BA1, BA2)) << "true operator== test";
 	BA1.reset(1);
 	EXPECT_FALSE(operator==(BA1, BA2)) << "false operator== test";
 }
@@ -363,7 +363,7 @@ TEST(ClasslessOperators, OperatorAnd) {
 	BitArray BA1(15, 2023), BA2(15, 20319), BA3(15, 1253), BA4 = operator&(BA1, BA2);
 	for (int i = 0; i < BA3.size(); i++)
 		if (BA3.operator[](i))
-			EXPECT_TRUE(BA4.operator[](i)) << "operator&= test";
+			EXPECT_FALSE(BA4.operator[](i)) << "operator&= test";
 		else
 			EXPECT_FALSE(BA4.operator[](i)) << "operator&= test";
 }
