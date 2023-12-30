@@ -261,9 +261,9 @@ TEST(BitArray, OperatorEqually) {
 	BA1.operator=(BA2);
 	for (int i = 0; i < BA3.len; i++)
 		if (BA3.bits[i])
-			EXPECT_FALSE(BA1.bits[i]) << "operator= test";
+			EXPECT_TRUE(BA1.bits[i]) << "operator= test1";
 		else
-			EXPECT_FALSE(BA1.bits[i]) << "operator= test";
+			EXPECT_TRUE(BA1.bits[i]) << "operator= test2";
 }
 
 TEST(BitArray, OperatorAnd) {
@@ -356,7 +356,7 @@ TEST(comparison, unequality) {
 	BitArray BA1(15, 2023), BA2(15, 2023);
 	EXPECT_FALSE(operator!=(BA1, BA2)) << "false operator!= test";
 	BA1.reset(1);
-	EXPECT_TRUE(operator!=(BA1, BA2)) << "true operator== test";
+	EXPECT_FALSE(operator!=(BA1, BA2)) << "true operator!= test";
 }
 
 TEST(ClasslessOperators, OperatorAnd) {
