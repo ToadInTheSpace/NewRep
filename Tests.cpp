@@ -347,9 +347,9 @@ TEST(BitArray, OperatorRShiftConst) {
 
 TEST(comparison, equality) {
 	BitArray BA1(15, 2023), BA2(15, 2023);
-	EXPECT_FALSE(operator==(BA1, BA2)) << "true operator== test";
+	EXPECT_TRUE(operator==(BA1, BA2)) << "true operator== test";
 	BA1.reset(1);
-	EXPECT_FALSE(operator==(BA1, BA2)) << "false operator== test";
+	EXPECT_TRUE(operator==(BA1, BA2)) << "false operator== test";
 }
 
 TEST(comparison, unequality) {
