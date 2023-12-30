@@ -1,19 +1,18 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(MyProject)
+project(BitArrayLibrary)
 
 # Добавьте ваши исходные файлы
 set(SOURCES
     BitArray.cpp
     Body.cpp
     Body.h
-    README.md
     Tests.cpp
     lab1.cpp
 )
 
 # Добавьте исполняемый файл
-add_executable(my_executable ${SOURCES})
+add_library(BitArray SHARED ${SOURCEs})
 
 # Добавьте библиотеку Google Test
 add_subdirectory(googletest)
@@ -22,14 +21,12 @@ add_subdirectory(googletest)
 add_executable(tests Tests.cpp)
 
 # Укажите исходные файлы для тестов
-target_sources(tests PRIVATE Tests.cpp)
-
+target_include_directories(BitArray PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR} # Путь к корневой директории программы
+)
 # Целевая библиотека для тестов
-target_link_libraries(tests PRIVATE my_executable gtest gtest_main)
-
-# Добавьте зависимость от цели my_executable
-add_dependencies(tests my_executable)
-
-# Создание цели для тестирования с помощью CTest
-enable_testing()
-add_test(NAME my_tests COMMAND tests)
+target_link_libraries(YourLibraryName PUBLIC
+    OtherLibraryName
+    ${CMAKE_CURRENT_SOURCE_DIR}/Googletest/lib/libgtest.a
+    ${CMAKE_CURRENT_SOURCE_DIR}/Googletest/lib/libgtest_main.a
+)
