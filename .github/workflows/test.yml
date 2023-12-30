@@ -1,0 +1,29 @@
+name: Build and Test C++ Program on Windows
+
+on:
+  push:
+    branches:
+      - main  # замените на вашу основную ветку
+
+jobs:
+  build_and_test:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up MSVC environment
+      uses: microsoft/setup-msvc@v2
+      with:
+        msvc-version: '2019'  # или укажите нужную версию MSVC
+
+    - name: Build C++ program
+      run: |
+        mkdir build
+        cd build
+        cmake ..
+        msbuild /p:Configuration=Release
+
+    - name: Run tests
+      run: .\Release\YourExecutable.exe
