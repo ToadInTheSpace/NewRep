@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v2
 
     - name: install CMake
       run: sudo apt-get -y install cmake g++
@@ -22,6 +22,7 @@ jobs:
         cd build
         cmake ..
         cmake --build .
+        ctest -V
 
     - name: Run program
       run: ./build/TESTS
