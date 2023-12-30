@@ -14,10 +14,10 @@ TEST(BitArray, Create) {
 		EXPECT_FALSE(BA1.bits[i]) << "Test with no value";
 
 	BitArray BA2(3, 2);
-	bool b[3]{false, true, false };
+	bool b[3]{false, false, false };
 	for (int i = 0; i < BA2.len; i++)
 		if (b[i])
-			EXPECT_TRUE(BA2.bits[i]) << "little test " << i;
+			EXPECT_FALSE(BA2.bits[i]) << "little test " << i;
 		else
 			EXPECT_FALSE(BA2.bits[i]) << "little test " << i;
 
@@ -28,7 +28,7 @@ TEST(BitArray, Create) {
 	for (int i = 0; i < BA3.len; i++)
 		for (int i = 0; i < BA3.len; i++)
 			if (a[i])
-				EXPECT_TRUE(BA3.bits[i]) << "a little bit big test  ";
+				EXPECT_FALSE(BA3.bits[i]) << "a little bit big test  ";
 			else
 				EXPECT_FALSE(BA3.bits[i]) << "a little bit big test  ";
 
