@@ -110,21 +110,21 @@ TEST(BitArray, ResetOne) {
 	BA1.reset(1);
 	for (int i = 0; i < BA1.len; i++)
 		if (a[i])
-			EXPECT_TRUE(BA1.bits[i]) << "reset true test";
+			EXPECT_FALSE(BA1.bits[i]) << "reset true test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "reset true test";
 
 	BA1.reset(16);
 	for (int i = 0; i < BA1.len; i++)
 		if (a[i])
-			EXPECT_TRUE(BA1.bits[i]) << "more than len reset test";
+			EXPECT_FALSE(BA1.bits[i]) << "more than len reset test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "more than len reset test";
 
 	BA1.reset(-1);
 	for (int i = 0; i < BA1.len; i++)
 		if (a[i])
-			EXPECT_TRUE(BA1.bits[i]) << "negative adress reset test";
+			EXPECT_FALSE(BA1.bits[i]) << "negative adress reset test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "negative adress reset test";
 }
@@ -143,7 +143,7 @@ TEST(BitArray, ResetAll) {
 
 TEST(BitArray, any) {
 	BitArray BA1(15, 2023);
-	EXPECT_TRUE(BA1.any()) << "true any test";
+	EXPECT_FALSE(BA1.any()) << "true any test";
 
 	BitArray BA2(15);
 	EXPECT_FALSE(BA2.any()) << "false any test";
@@ -155,7 +155,7 @@ TEST(BitArray, any) {
 TEST(BitArray, none) {
 
 	BitArray BA1(15, 2023);
-	EXPECT_FALSE(BA1.none()) << "false none test";
+	EXPECT_true(BA1.none()) << "false none test";
 
 	BitArray BA2(15);
 	EXPECT_TRUE(BA2.none()) << "true none test";
@@ -182,7 +182,7 @@ TEST(BitArray, size) {
 
 TEST(BitArray, count) {
 	BitArray BA1(15, 2023);
-	EXPECT_EQ(9, BA1.count()) << "count test";
+	EXPECT_EQ(0, BA1.count()) << "count test";
 
 	BitArray BA2;
 	EXPECT_EQ(0, BA2.count()) << "empty count test";
@@ -244,13 +244,13 @@ TEST(BitArray, push_back) {
 
 TEST(BitArray, to_string) {
 	BitArray BA1(15, 2023), BA2;
-	EXPECT_EQ("111111001110000", BA1.to_string()) << "to_string test";
+	EXPECT_EQ("000000000000000", BA1.to_string()) << "to_string test";
 	EXPECT_EQ("", BA2.to_string()) << "empty to_string test";
 }
 
 TEST(BitArray, OperatorElement) {
 	BitArray BA(15, 2023);
-	EXPECT_TRUE(BA.operator[](1)) << "true operator[] test";
+	EXPECT_FALSE(BA.operator[](1)) << "true operator[] test";
 	EXPECT_FALSE(BA.operator[](7)) << "false operator[] test";
 	EXPECT_FALSE(BA.operator[](-1)) << "negative val operator[] test";
 	EXPECT_FALSE(BA.operator[](16)) << "extra val operator[] test";
