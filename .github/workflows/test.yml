@@ -3,20 +3,20 @@ name: Build and Run with CMake
 on:
   push:
     branches:
-      - main  # Замените на вашу ветку по умолчанию
+      - main  # Change to your default branch name
 
 jobs:
   build_and_run:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
     - name: Set up CMake
-      uses: actions/setup-cmake@v2
+      uses: actions/setup-cmake@v1  # Use the appropriate version tag
       with:
-        cmake-version: '3.20'  # Укажите необходимую версию CMake
+        cmake-version: '3.20'  # Specify the CMake version you need
 
     - name: Build project
       run: |
