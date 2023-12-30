@@ -1,6 +1,6 @@
 #include "Body.h"
-//yuml - формат файлов при помощи него настаивать эту штуку, запустить тесты что бы они автоматически сработали на github/gitlab, (continues intagration) 
-// что такое виртуальная функция
+//yuml - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ github/gitlab, (continues intagration) 
+// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 TEST(BitArray, EmptyCreate) {
 	BitArray BA;
 	EXPECT_EQ(0, BA.len) << "length != 0";
@@ -13,13 +13,13 @@ TEST(BitArray, Create) {
 	for (int i = 0; i < 10; i++)
 		EXPECT_FALSE(BA1.bits[i]) << "Test with no value";
 
-	BitArray BA2(2, 1);
-	bool b[2]{ true, false };
+	BitArray BA2(3, 2);
+	bool b[2]{false true, false };
 	for (int i = 0; i < BA2.len; i++)
 		if (b[i])
-			EXPECT_TRUE(BA2.bits[i]) << "little test";
+			EXPECT_TRUE(BA2.bits[i]) << "little test " << i;
 		else
-			EXPECT_FALSE(BA2.bits[i]) << "little test";
+			EXPECT_FALSE(BA2.bits[i]) << "little test " << i;
 
 
 	bool a[15]{ true, true, true, true, true, true, false, false, true, true, true, false, false, false, false };
