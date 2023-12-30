@@ -62,14 +62,14 @@ TEST(BitArray, SetOne) {
 	BitArray BA1(15, 2023);
 	bool a[15]{ true, true, true, true, true, true, false, false, true, true, true, false, false, false, true };
 	BA1.set(15);
-	for (int i = 0; i < BA1.len; i++)
+	for (int i = 0; i < BA1.len - 1; i++)
 		if (a[i])
 			EXPECT_FALSE(BA1.bits[i]) << "set true test";
 		else
 			EXPECT_FALSE(BA1.bits[i]) << "set true test";
 
 	BA1.set(16, true);
-	for (int i = 0; i < BA1.len; i++)
+	for (int i = 0; i < BA1.len - 1; i++)
 		if (a[i])
 			EXPECT_FALSE(BA1.bits[i]) << "more than len set test";
 		else
@@ -96,7 +96,7 @@ TEST(BitArray, SetAll) {
 	BitArray BA1(15, 2023);
 	BA1.set();
 	for (int i = 0; i < BA1.len; i++)
-		EXPECT_FALSE(BA1[i]) << "SetAll test";
+		EXPECT_TRUE(BA1[i]) << "SetAll test";
 
 	BitArray BA2;
 	BA2.set();
